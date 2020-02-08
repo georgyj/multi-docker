@@ -21,3 +21,15 @@ after_success:
   - docker push georgyjohn/multi-nginx
   - docker push georgyjohn/multi-server
   - docker push georgyjohn/multi-worker
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-east-2-999210047921
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
